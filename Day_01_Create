@@ -1,0 +1,42 @@
+
+/*===============================================
+		TABLO OLUSTURMA (CRUD - Create)
+===============================================*/
+
+
+-- id, isim, not ortalamasi, adres ve son degistirme tarihi
+-- fieldlari iceren bir ogrenciler tablosunu olusturun.
+
+USE sys;
+
+
+CREATE TABLE ogrenciler
+(
+ id CHAR(4),
+ isim VARCHAR(20),
+ not_ortalamasi DOUBLE,
+ adres VARCHAR(100),
+ son_degistirme_tarihi DATE
+);
+
+SELECT * FROM ogrenciler;
+
+
+/*------------------------ Q1 -----------------------
+	"tedarikciler" isminde bir tablo olusturun.
+	Olusturdugunuz "tedarikciler" tablosunda
+	"tedarikci_id", "tedarikci_ismi", "tedarikci_adres"
+	ve "ulasim_tarihi" field'lari olsun.
+---------------------------------------------------*/
+
+
+	CREATE TABLE tedarikciler
+    (
+    tedarikci_id CHAR(4),
+    tedarikci_ismi VARCHAR(20),
+    tedarikci_adres VARCHAR(50),
+    ulasim_tarihi DATE
+    );
+
+SELECT * FROM tedarikciler;
+
