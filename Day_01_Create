@@ -40,3 +40,26 @@ SELECT * FROM ogrenciler;
 
 SELECT * FROM tedarikciler;
 
+/*===============================================
+		VAR OLAN TABLODAN TABLO OLUSTURMA
+===============================================*/
+
+/*--------------------- Syntax -------------------
+	CREATE TABLE table_name
+	AS
+	SELECT field1, field2 
+	FROM other_table_name;
+--------------------------------------------------*/
+
+/* Ogrenciler tablosundan "isim" ve "not_ortalamasi"
+ field'larini alarak "ogrenci_derece" isimli yeni 
+ bir tablo olusturun.
+*/
+
+CREATE TABLE ogrenci_derece
+AS
+SELECT isim, not_ortalamasi 
+FROM ogrenciler;
+
+SELECT * FROM ogrenci_derece;
+
