@@ -1,0 +1,31 @@
+USE sys;
+
+/*===============================================
+			 VERI GIRISI - INSERT
+===============================================*/
+/*--------------------- Syntax -------------------
+	INSERT INTO table_name
+	VALUES 
+	(
+	std_id CHAR(4),           *1001*
+	std_name VARCHAR(25),     *Esra*
+	std_age INT				  *20*
+	);
+
+/* Fen Lisesi ogrencilerinin okul no, isim, derece,adres ve
+son degisiklik tarihi bilgilerinin oldugu bir tablo hazirlayalim.
+okul no field'i UNIQUE olmali
+isim field'i bos birakilamamali. 
+*/
+
+CREATE TABLE fen_lisesi
+(
+   okul_no INT UNIQUE,
+   isim VARCHAR(30) NOT NULL,
+   derece DOUBLE,
+   adres VARCHAR(50),
+   son_degisiklik_tarihi DATE
+);
+
+SELECT * FROM fen_lisesi;
+
