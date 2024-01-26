@@ -44,3 +44,30 @@ INSERT INTO fen_lisesi VALUES(null,'Fatma', 4.8, 'Antalya','2024-01-24');
 INSERT INTO fen_lisesi VALUES(null,'Ali', 4.8, 'Antalya','2024-01-24');
 
 SELECT * FROM fen_lisesi;
+
+
+/*------------------------ Q3 -----------------------
+	okul_no, isim, adres, derece field'lari olan anadolu lisesi
+	tablosu olusturun. 
+	okul no field'i CHAR data type'inda ve UNIQUE olmali.
+	isim field'i NOT NULL olmali.
+---------------------------------------------------*/
+
+CREATE TABLE anadolu_lisesi_yeni
+(
+	okul_no CHAR(4) UNIQUE,
+    isim VARCHAR(25) NOT NULL,
+    adres VARCHAR(25),
+    derece DOUBLE
+);
+SELECT * FROM anadolu_lisesi_yeni;
+
+INSERT INTO anadolu_lisesi_yeni VALUES('1006', 'Yusuf','Akhisar', 9.9);
+INSERT INTO anadolu_lisesi_yeni VALUES('1000','ÅEVVAL TUFEKCI','ALMANYA',4.9);
+INSERT INTO anadolu_lisesi_yeni VALUES('1002','Zehra','istanbul',3.12);
+INSERT INTO anadolu_lisesi_yeni VALUES('1','Reyhan','Eskisehir',9.9); 
+INSERT INTO anadolu_lisesi_yeni VALUES('1001','ESRA YILMAZ','CANNES',4.9);
+
+INSERT INTO anadolu_lisesi_yeni (okul_no, isim) VALUES('1005','Ayca OVALI');
+INSERT INTO anadolu_lisesi_yeni ( isim, okul_no) VALUES('iHSAN ALTUNISIK', '1007');
+
