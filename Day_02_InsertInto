@@ -13,4 +13,36 @@ USE sys;
 	);
 --------------------------------------------------*/
 
+/* Fen Lisesi ogrencilerinin okul no, isim, derece,adres ve
+son degisiklik tarihi bilgilerinin oldugu bir tablo hazirlayalim.
+okul no field'i UNIQUE olmali
+isim field'i bos birakilamamali. 
+*/
+
+CREATE TABLE fen_lisesi
+(
+   okul_no INT UNIQUE,
+   isim VARCHAR(30) NOT NULL,
+   derece DOUBLE,
+   adres VARCHAR(50),
+   son_degisiklik_tarihi DATE
+);
+
+SELECT * FROM fen_lisesi;
+
+INSERT INTO fen_lisesi VALUES(1001,'Burcu DURAK', 4.8, 'NIGDE','2024-01-24');
+INSERT INTO fen_lisesi VALUES(1002,'Burcu DURAK', 4.8, 'NIGDE','2024-01-24');
+INSERT INTO fen_lisesi VALUES(1003,'', 4.8, 'NIGDE','2024-01-24');
+INSERT INTO fen_lisesi VALUES(1004,4.8, 'NIGDE','2024-01-24');
+INSERT INTO fen_lisesi VALUES(1005,null, 4.8, 'NIGDE','2024-01-24');
+INSERT INTO fen_lisesi VALUES(1006,'Zehra D', 4.7, 'Istanbul','2024-01-24');
+INSERT INTO fen_lisesi VALUES(1007,'Reyhan Yilmaz', 4.9, 'Ankara','2024-01-24');
+INSERT INTO fen_lisesi VALUES(1008,'Beytullah Gorgulu', 4.5, 'Akhisar','2024-01-24');
+INSERT INTO fen_lisesi VALUES(1009,'Azim Kaya', 4.6, 'Mersin','2024-01-24');
+INSERT INTO fen_lisesi VALUES(1010,'Zeliha Selcuk', 4.8, 'Bolu','2024-01-24');
+INSERT INTO fen_lisesi VALUES(null,'Osman', 4.8, 'Antalya','2024-01-24');
+INSERT INTO fen_lisesi VALUES(null,'Fatma', 4.8, 'Antalya','2024-01-24');
+INSERT INTO fen_lisesi VALUES(null,'Ali', 4.8, 'Antalya','2024-01-24');
+
+SELECT * FROM fen_lisesi;
 
