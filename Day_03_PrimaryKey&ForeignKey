@@ -44,3 +44,43 @@ CREATE TABLE sehirler
 SELECT * FROM sehirler;
 
 
+/*------------------------------- Q5 -------------------------------
+	"ogretmenler" isimli bir table olusturun.
+	Tabloda "id", "isim", "brans", "cinsiyet" fieldlari olsun.
+	"id" field'i tekrarli veri kabul etmesin.
+	2. yolu kullanarak "id" ve "isim" field'larini primary key yapin
+-------------------------------------------------------------------*/
+
+CREATE TABLE ogretmenler
+(	
+	id CHAR(4) UNIQUE,
+    isim VARCHAR(30),
+    brans VARCHAR(20),
+    cinsiyet CHAR(5),
+    CONSTRAINT ogretmenler_pk PRIMARY KEY(id, isim)
+);
+
+SELECT * FROM ogretmenler;
+
+/*------------------------------- Q6 -------------------------------
+	"universite_ogrenci_bilgi_sistemi" isimli bir table olusturun.
+	Tabloda "giris_yili", "giris_siralamasi", "isim", "bolum" field'lari olsun.
+	"isim" field'i NULL deger kabul etmesin.
+	2. yolu kullanarak "giris_yili" ve "giris_siralamasi" field'larini primary key yapin
+-------------------------------------------------------------------*/
+
+-- 2 yol CONSTRAINT ile yapiliyor.
+
+CREATE TABLE universite_ogrenci_bilgi_sistemi
+(
+	giris_yili YEAR,
+    giris_siralamasi INT,
+    isim VARCHAR(30),
+    bolum VARCHAR(20),
+    CONSTRAINT girisYili_girisSiralamasi_pk PRIMARY KEY(giris_yili,giris_siralamasi)
+);
+
+SELECT * FROM universite_ogrenci_bilgi_sistemi;
+
+-- *-*-*-*-*-*-**-*-*-*-*--**--*-----*-*-*-*-*-**-***-*-*-*-*-*-*-*-*-*-*-*-*-**- --
+
