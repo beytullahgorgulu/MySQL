@@ -84,3 +84,48 @@ SELECT * FROM universite_ogrenci_bilgi_sistemi;
 
 -- *-*-*-*-*-*-**-*-*-*-*--**--*-----*-*-*-*-*-**-***-*-*-*-*-*-*-*-*-*-*-*-*-**- --
 
+/*============================ Foreign Key ============================
+
+
+/*--------------------------- Syntax  ---------------------------
+	CONSTRAINT constraintName FOREIGN KEY(child_table_field_name)
+	REFERENCES parent_table (parent_table_field_name)
+
+	CREATE TABLE table_name
+	(
+		id CHAR(10),
+		name CHAR(10),
+		CONSTARINT constraint_name
+		FOREIGN KEY(id)
+		REFERENCES parent_table (parent_table_field_name)
+	);
+---------------------------------------------------------------*/
+
+/*------------------------------- Q7 -------------------------------
+	"tedarikci" isimli bir tablo olusturun.
+	Tabloda "tedarikci_id", "tedarikci_ismi", "iletisim_isim" fieldlari olsun.
+	"tedarikci_id" field'ini PRIMARY KEY olsun.
+	
+
+	"urunler" isminde baska bir tablo olusturun. 
+	Tabloda "tedarikci_id" ve "urun_id" field'lari olsun.
+	"tedarikci_id" FOREIGN KEY olsun.
+-------------------------------------------------------------------*/
+
+CREATE TABLE tedarikci
+(
+	tedarikci_id INT PRIMARY KEY,
+    tedarikci_ismi VARCHAR(30),
+    iletisim_isim VARCHAR(30)
+);
+
+CREATE TABLE urunler
+(
+	tedarikci_id INT,
+    urun_id INT,
+    CONSTRAINT id_fk FOREIGN KEY (tedarikci_id)
+    REFERENCES tedarikci (tedarikci_id)
+);
+
+SELECT * FROM tedarikci;
+SELECT * FROM urunler;
