@@ -1,0 +1,46 @@
+USE sys;
+
+/*============================ Primary Key ============================
+
+/*--------------------- Syntax 1 -------------------
+
+	CREATE TABLE students_table
+	(
+		id INT PRIMARY KEY,
+		name VARCHAR(50) NOT NULL,
+		grade INT,
+		adres VARCHAR(100),
+		last_update DATE
+	);
+--------------------------------------------------*/
+
+/*--------------------- Syntax 2 -------------------
+
+	CREATE TABLE students_table
+	(
+		id INT ,
+		name VARCHAR(50) NOT NULL,
+		grade INT,
+		adres VARCHAR(100),
+		last_update DATE
+		CONSTARINT id_pk PRIMARY KEY (id)
+	);
+--------------------------------------------------*/
+
+/*------------------------------- Q4 -------------------------------
+	"sehirler" isimli bir table olusturun.
+	Tabloda "alan_kodu", "isim", "nufus" fieldlari olsun.
+	"isim" field'i bos birakilamasin.
+	1. yolu kullanarak "alan_kodu" field'ini primary key yapin
+-------------------------------------------------------------------*/
+
+
+CREATE TABLE sehirler
+(
+	alan_kodu INT PRIMARY KEY,
+    isim VARCHAR(30) NOT  NULL,
+    nufus BIGINT
+);
+SELECT * FROM sehirler;
+
+
