@@ -61,3 +61,32 @@ where adres='Ankara';
 select isim, adres 
 FROM meslek_lisesi 
 where okul_no=1005;
+
+
+/*==========================AND (ve) Operatoru kullanimi==================================
+SELECT *
+FROM matematik
+WHERE sinav1 < 50 AND sinav2 < 50
+*/
+-- -------------------------------- Q6 ----------------------------------
+-- Meslek lisesinde kayÄ±tlÄ± ogrencilerden derecesi 70 ile 80 arasinda olanlarin okul_no ve adres bilgilerini goruntuleyin.
+select okul_no, adres
+from meslek_lisesi
+where derece>70 and derece<80;
+
+select okul_no, adres
+from meslek_lisesi
+where derece>70 && derece<80;
+
+/*==========================OR (veya) Operatoru kullanimi==================================
+SELECT *
+FROM matematik
+WHERE sinav1 < 50 OR sinav2 < 50
+*/
+
+-- -------------------------------- Q7 ----------------------------------
+-- Meslek lisesinde kayÄ±tlÄ± ogrencilerden derecesi 70'den kucuk veya  80 den buyuk  olanlarin okul_no ve adres bilgilerini goruntuleyin
+select okul_no,adres
+from meslek_lisesi
+where derece<70 or derece>80;
+
