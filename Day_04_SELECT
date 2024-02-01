@@ -138,3 +138,58 @@ from ogretmen_lisesi
 where isim
 between 'Emine Yucel' and 'Murat';
 
+CREATE TABLE personel(
+id CHAR(5),
+isim VARCHAR(50),
+maas INT
+);
+
+INSERT INTO personel VALUES('10001','Ahmet Aslan',7000);
+INSERT INTO personel VALUES('10002','Mehmet Yilmaz',12000);
+INSERT INTO personel VALUES('10003','Meryem',7215);
+INSERT INTO personel VALUES('10004','Veli Han',5000);
+INSERT INTO personel VALUES('10005','Mustafa Ali',5500);
+INSERT INTO personel VALUES('10006','Ayse Can',5600);
+INSERT INTO personel VALUES('10010','Ayse',4700);
+INSERT INTO personel VALUES('10009','Ayse Cemile',4000);
+INSERT INTO personel VALUES('10008','Ayse Fatma',4300);
+INSERT INTO personel VALUES('10007','Beyza Ayse',7700);
+INSERT INTO personel VALUES('10011','Yeliz Alina',12700);
+
+-- -------------------------------- Q10 ----------------------------------
+-- id'si 10005 ile 10009 arasinda olan personelin bilgilerini listele
+select *
+from personel
+where id
+between 10006 and 10008;
+
+-- -------------------------------- Q11 ----------------------------------
+-- Ismi Mehmet Yilmaz ile Veli arasinda olan personel bilgilerini listeleyin
+select *
+from personel
+where isim
+between 'Mehmet Yilmaz' and 'Veli';
+
+-- -------------------------------- Q12 ----------------------------------
+-- Ismi Ahmet ile Ayse Fatma arasinda olan personel bilgilerini listeleyin
+
+SELECT *
+FROM personel
+WHERE isim
+BETWEEN 'Ahmet' AND 'Ayse Fatma';
+
+-- -------------------------------- Q13 ----------------------------------
+-- Maasi 7000 ya da ismi Ayse olan personel id'lerini listeleyin
+
+SELECT id
+FROM personel
+WHERE isim = 'Ayse' OR maas = 7000;
+
+-- -------------------------------- Q14 ----------------------------------
+-- Id'si 10001, 10005 ya da 10008 olan personel isimlerini listeleyin
+
+SELECT isim
+FROM personel 
+WHERE id= '10001' OR id = '10005' OR id = '10008';
+
+
