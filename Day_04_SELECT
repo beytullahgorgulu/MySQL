@@ -1,0 +1,63 @@
+Use sys;
+/*====================================================================
+				  				SELECT - WHERE
+====================================================================*/
+
+/*-----------------------------------Syntax--------------------------------
+	SELECT field1,field2
+	FROM tablo_adi
+	WHERE kosul;
+
+	SELECT: Hangi sutunlari getirsin?
+	FROM  : Hangi tablodan getirsin?
+	WHERE : Hangi satirlari getirsin?
+--------------------------------------------------------------------------*/
+
+
+CREATE TABLE meslek_lisesi
+(
+okul_no CHAR(4) UNIQUE,
+isim VARCHAR(50) NOT NULL,
+derece DOUBLE,
+adres VARCHAR(100),
+son_degisiklik_tarihi DATE
+);
+SELECT * FROM meslek_lisesi;
+INSERT INTO meslek_lisesi VALUES('1001','Fatih Oz', 89,'Ankara', '2022-11-23');
+INSERT INTO meslek_lisesi VALUES('1002','Fatih Yildiz', 94,'Istanbul', '2022-11-23');
+INSERT INTO meslek_lisesi VALUES('1003','Bora Sverige', 78,'Izmir', '2022-11-23');
+INSERT INTO meslek_lisesi VALUES('1004','Nevzat Celik', 69,'Ankara', '2022-11-23');
+INSERT INTO meslek_lisesi VALUES('1005','Gursel Unal', 90,'Istanbul', '2022-11-23');
+INSERT INTO meslek_lisesi VALUES('1006','Soner Karatasoglu ', 85,'Istanbul', '2022-11-23');
+INSERT INTO meslek_lisesi VALUES('1007','Talha Kurt', 75,'Ankara', '2022-11-23');
+INSERT INTO meslek_lisesi VALUES('1008','Yakup Lejon', 79,'Izmir', '2022-11-23');
+INSERT INTO meslek_lisesi VALUES('1009','Ilhan Gurbetci', 80,'Izmir', '2022-11-23');
+
+-- -------------------------------- Q1 ----------------------------------
+-- Meslek lisesinde kayÄ±tlÄ± ogrencilerin sadece isimlerini goruntuleyin.
+select isim 
+FROM meslek_lisesi;
+
+-- -------------------------------- Q2 ----------------------------------
+--  Meslek lisesinde kayÄ±tlÄ± ogrencilerden derecesi 90'dan buyuk olanlari goruntuleyin.
+select * 
+FROM meslek_lisesi 
+where derece>90;
+
+-- -------------------------------- Q3 ----------------------------------
+-- Meslek lisesinde kayÄ±tlÄ± ogrencilerden derecesi 80'den kucuk olanlari goruntuleyin.
+select * 
+FROM meslek_lisesi 
+where derece<80;
+
+-- -------------------------------- Q4 ----------------------------------
+--  Meslek lisesinde kayÄ±tlÄ± ogrencilerden adresi 'ankara' olanlarin isim ve derece bilgilerini goruntuleyin.
+select isim, derece 
+FROM meslek_lisesi 
+where adres='Ankara';
+
+-- -------------------------------- Q5 ----------------------------------
+-- Meslek lisesinde kayÄ±tlÄ±  '1005' okul numarali ogrencinin isim ve adres bilgilerini goruntuleyin.
+select isim, adres 
+FROM meslek_lisesi 
+where okul_no=1005;
