@@ -90,3 +90,51 @@ select okul_no,adres
 from meslek_lisesi
 where derece<70 or derece>80;
 
+/*================================== SELECT-BETWEEN =============================================
+-----Syntax-----
+SELECT field1,field2,...
+FROM table_name
+WHERE field_name
+BETWEEN deger1 AND deger2;
+=========================================================================================*/
+
+CREATE TABLE ogretmen_lisesi
+(
+	id INT,
+	isim VARCHAR(45),
+	adres VARCHAR(100),
+	sinav_notu DOUBLE
+);
+
+INSERT INTO ogretmen_lisesi VALUES(111,'Emine Yucel', 'Ankara', 75);
+INSERT INTO ogretmen_lisesi VALUES(112,'Muhammet Talha Kurt', 'Istanbul', 85);
+INSERT INTO ogretmen_lisesi VALUES(113,'Ilker SahÄ±n', 'Ankara', 70);
+INSERT INTO ogretmen_lisesi VALUES(114,'KadÄ±r Corumlu', 'Corum', 95);
+INSERT INTO ogretmen_lisesi VALUES(115,'Selman KasabalÄ±', 'Ankara', 74);
+INSERT INTO ogretmen_lisesi VALUES(116,'Murat AycÄ±cek', 'IzmÄ±r', 85);
+INSERT INTO ogretmen_lisesi VALUES(117,'Tugba Ozsoy', 'Bolu', 88);
+
+-- -------------------------------- Q8 ----------------------------------
+-- Ogretmen lisesinde kayitli ogrencilerden sinav_notu 
+-- 70 ile 80 arasinda olanlarin id ve adres bilgilerini goruntuleyin.
+select id,adres
+from ogretmen_lisesi
+where sinav_notu>70 and sinav_notu<80;
+
+
+select id,adres
+from ogretmen_lisesi
+where sinav_notu
+between 71 and 79;
+-- -------------------------------- Q9 ----------------------------------
+-- Muhammet Talha ve Murat arasinda olan ogrencilerin isimlerini listeleyin.
+select isim
+from ogretmen_lisesi
+where isim
+between 'Muhammet Talha' and 'Murat';
+
+select isim
+from ogretmen_lisesi
+where isim
+between 'Emine Yucel' and 'Murat';
+
