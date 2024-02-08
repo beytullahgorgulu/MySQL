@@ -1,0 +1,77 @@
+USE sys;
+
+/* ====================================== UPDATE ========================================
+
+-----Syntax-----
+UPDATE table_name
+SET field1=''
+WHERE condition;
+========================================================================================*/
+
+
+/*--------------------------------------------------------------------------------------
+1) Bir firmalar tablosu olusturun icinde id,
+isim ve iletisim_isim field'lari olsun. 
+id ve isim field'lari PRIMARY KEY olsun.
+---------------------------------------------------------------------------------------*/
+
+CREATE TABLE firmalar 
+(
+	id INT,
+    isim VARCHAR(20),
+    iletisim_isim VARCHAR(20),
+    CONSTRAINT id_isim_pk PRIMARY KEY (id,isim)
+);
+
+SELECT * FROM firmalar;
+
+/*--------------------------------------------------------------------------------------
+2) Icine 3 kayit ekleyin :
+(1, 'ACB', 'Ali Can'), 
+(2, 'RDB', 'Veli Gul'), 
+(3, 'KMN', 'Ayse Gulmez').
+---------------------------------------------------------------------------------------*/
+INSERT INTO firmalar VALUES
+(1, 'ACB', 'Ali Can'), 
+(2, 'RDB', 'Veli Gul'), 
+(3, 'KMN', 'Ayse Gulmez');
+
+-- Id'si 3 olan firmanin ismini 'KRM' olarak guncelleyiniz
+UPDATE firmalar
+SET isim='KRM'
+WHERE id=3;
+
+SELECT * FROM firmalar;
+
+-- Iletisim ismi Veli Gul olan firmanin id'sini 4, ismini FDS olarak guncelleyiniz.
+
+UPDATE firmalar
+SET id= 4 
+WHERE iletisim_isim= 'Veli Gul';
+
+UPDATE firmalar
+SET isim= 'FDS'
+WHERE iletisim_isim= 'Veli Gul';
+
+
+UPDATE firmalar
+SET id= 4, isim= 'FDS'
+WHERE iletisim_isim= 'Veli Gul';
+
+SELECT * FROM firmalar;
+
+
+-- Ismi ACB olan firmanin iletisim ismini 'Osman Can' olarak guncelleyiniz.
+
+UPDATE firmalar
+SET iletisim_isim='Osman Can'
+WHERE isim='ACB';
+
+SELECT * FROM firmalar;
+
+-- Iletisim ismi 'Osman Can' olan firmanin iletisim ismini 'Ayse Can' olarak guncelleyiniz.
+
+UPDATE firmalar
+SET iletisim_isim = 'Ayse Can'
+WHERE iletisim_isim = 'Osman Can';
+
