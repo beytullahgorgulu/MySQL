@@ -149,3 +149,46 @@ WHERE id>125;
     DROP TABLE talebeler;  -- sonra parent table silinir
     DROP TABLE dereceler;  -- once child table silinir
     
+    -- -------------------ON DELETE CASCADE-------------
+    
+  /*    Her defasinda once child tablodaki verileri silmek yerine 
+		ON DELETE CASCADE silme ozelligini aktif hale getirebiliriz.
+
+		Bunun icin FK olan satirin en sonuna ON DELETE CASCADE komutunu yazmak yeterli.
+   */ 
+    
+    CREATE TABLE talebeler
+	(
+		id CHAR(3) PRIMARY KEY,
+		isim VARCHAR(50),
+		veli_isim VARCHAR(50),
+		yazili_notu INT
+	);
+
+INSERT INTO talebeler VALUES
+		(123,'Ali Can', 'Hasan', 75),
+		(124,'Merve Gul', 'Ayse', 85),
+		(125,'Kemal Yasa', 'Hasan', 85),
+		(126,'Nesıbe Yılmaz', 'Ayse', 95),
+		(127,'Mustafa Bak', 'Can', 99);
+        
+    CREATE TABLE dereceler
+		(
+			talebe_id CHAR(3),
+			ders_adi VARCHAR(30),
+			yazili_notu INT,
+			CONSTRAINT talebe_id_fk FOREIGN KEY (talebe_id)
+			REFERENCES talebeler(id) ON DELETE CASCADE
+		);    
+        
+
+INSERT INTO dereceler VALUES
+		(123, 'Kimya', 75),
+		(124, 'Fizik', 65),
+		(125, 'Tarih', 90),
+		(126, 'Matematik', 90),
+		(127, 'Matematik', 23);
+
+		SELECT * FROM talebeler;
+		SELECT * FROM dereceler;
+
