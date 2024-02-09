@@ -1,0 +1,91 @@
+USE sys;
+
+/*================================== DELETE ============================================
+DELETE FROM table_name 
+WHERE field = data;
+=======================================================================================*/
+
+--    DELETE FROM ogrenciler;  ogrenciler tablosundaki tum verileri siler.
+
+--    SAVEPOINT ABC; -- Verileri database'e yedekler..
+
+--    ROLLBACK TO  ABC;  Yedeklenen verilerimizi geri getirir.
+
+CREATE TABLE kursiyer
+(
+id char(3),
+isim varchar(50),
+veli_isim varchar(50),
+yazili_notu int,
+CONSTRAINT kursiyer_pk
+PRIMARY KEY (id)
+);
+INSERT INTO kursiyer VALUES(123, 'Ali Can', 'Hasan',75); 
+INSERT INTO kursiyer VALUES(124, 'Merve Gul', 'Ayse',85); 
+INSERT INTO kursiyer VALUES(125, 'Kemal Yasa', 'Ali',85);
+
+SELECT * FROM kursiyer;
+
+DELETE FROM kursiyer
+WHERE veli_isim= 'Ali' OR veli_isim = 'Ayse';
+
+
+-- Yazili notu 84'ten buyuk olan kursiyer silin
+
+DELETE FROM kursiyer
+WHERE yazili_notu>84;
+
+-- Yazili notu 85'e eşit olmayan kursiyerleri silin 
+
+DELETE FROM kursiyer
+WHERE yazili_notu <>85;
+
+DELETE FROM kursiyer
+WHERE yazili_notu !=85;
+
+DELETE FROM kursiyer
+WHERE NOT yazili_notu = 85;
+
+-- Yazili notu 84 ten buyuk olan kursiyerleri silin
+
+DELETE FROM kursiyer
+WHERE yazili_notu  > 84;
+
+SELECT * FROM kursiyer;
+DELETE FROM kursiyer;
+
+-- ------------------------------------------------------------------------ --
+CREATE TABLE cocuk
+    (
+        id CHAR(3),
+        isim VARCHAR(50),
+        veli_isim VARCHAR(50),
+        yazili_notu int       
+    );
+  
+    INSERT INTO cocuk VALUES(123, 'Ali Can', 'Hasan',75);
+    INSERT INTO cocuk VALUES(124, 'Merve Gul', 'Ayse',85);
+    INSERT INTO cocuk VALUES(125, 'Kemal Yasa', 'Hasan',85);
+    INSERT INTO cocuk VALUES(126, 'Nesibe Yilmaz', 'Ayse',95);
+    INSERT INTO cocuk VALUES(127, 'Mustafa Bak', 'Can',99);
+    select *from cocuk;
+
+
+SAVEPOINT baslangic;
+
+DELETE FROM cocuk;
+SELECT * FROM cocuk;
+
+ROLLBACK TO baslangic;
+
+DROP TABLE cocuk;
+
+ROLLBACK TO baslangic;
+
+TRUNCATE TABLE cocuk;
+
+
+-- Talebeler tablosundan id'si 125 ten buyuk olan datalari siliniz.
+
+DELETE FROM talebeler
+WHERE id>125;    
