@@ -102,3 +102,65 @@ SELECT sirket, calisanlar_sayisi
 FROM sirketler
 WHERE sirket IN (SELECT sirket FROM calisanlar WHERE isim='Veli Yilmaz');
 
+/* ======================== SELECT ile SUBQUERY ===========================
+
+-- SELECT -- hangi field'i getirsin.
+-- FROM -- Hangi tablodan getirsin.
+-- WHERE -- Hangi row'dan getirsin.
+
+ */
+ 
+-- Her sirketin ismini, personel sayisini ve personelin 
+-- ortalama maasini listeleyen bir QUERY yazin.
+
+SELECT sirket, calisanlar_sayisi, (SELECT AVG(maas)
+								   FROM calisanlar
+                                   WHERE calisanlar.sirket = sirketler.sirket) AS ort_maas
+FROM sirketler;
+
+-- Her sirketin ismini ve personelin aldigi max. maasi 
+-- listeleyen bir QUERY yazin.
+
+SELECT sirket, (SELECT MAX(maas)
+			   FROM calisanlar
+               WHERE calisanlar.sirket = sirketler.sirket) AS max_maas
+FROM sirketler;
+
+-- Her sirketin id'sini, ismini ve toplam kac sehirde 
+-- bulundugunu listeleyen bir QUERY yaziniz.
+
+SELECT sirket_id, sirket, (SELECT COUNT(sehir)
+							FROM calisanlar
+                            WHERE calisanlar.sirket= sirketler.sirket) AS count_city
+FROM sirketler;
+
+-- ID'si 101'den buyuk olan sirketlerin id'sini, ismini ve 
+-- toplam kac sehirde bulundugunu listeleyen bir QUERY yaziniz.
+
+SELECT sirket_id, sirket, (SELECT COUNT(sehir)
+						  FROM calisanlar
+                          WHERE calisanlar.sirket= sirketler.sirket) AS sehir_sayisi
+FROM sirketler
+WHERE sirket_id > 101;
+
+-- Her sirketin ismini,personel sayisini ve personelin 
+-- aldigi max. ve min. maasi listeleyen bir QUERY yazin.
+
+SELECT sirket, calisanlar_sayisi, (SELECT MAX(maas)
+									FROM calisanlar
+                                    WHERE calisanlar.sirket= sirketler.sirket) AS max_maas,
+                                    (SELECT MIN(maas)
+									FROM calisanlar
+                                    WHERE calisanlar.sirket= sirketler.sirket) AS min_maas
+FROM sirketler;
+
+
+-- Her sirketin ismini ve personel sayisini ve iscilere
+-- odedigi toplam maasi listeleyen bir QUERY yazin.
+
+SELECT sirket, calisanlar_sayisi, (SELECT SUM(maas)
+                                   FROM calisanlar
+                                   WHERE calisanlar.sirket = sirketler.sirket) AS toplam_maas
+FROM sirketler;
+
+
