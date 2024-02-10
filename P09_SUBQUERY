@@ -37,3 +37,68 @@ INSERT INTO sirketler VALUES(103, 'Toyota', 21000);
 SELECT * FROM sirketler;
 SELECT * FROM calisanlar;
 
+-- ======================== WHERE ile SUBQUERY ===========================
+
+--  Personel sayisi 15.000'den cok olan sirketlerin isimlerini
+-- ve bu sirkette calisan personelin isimlerini listeleyin
+
+-- 1. ADIM
+SELECT sirket 
+FROM sirketler
+WHERE calisanlar_sayisi > 15000; -- ford ve toyota
+-- 2. Adim
+SELECT isim
+FROM calisanlar
+WHERE sirket IN('Ford','Toyota');
+
+-- 3. Adim
+SELECT isim, sirket
+FROM calisanlar
+WHERE sirket IN(SELECT sirket 
+                FROM sirketler
+                WHERE calisanlar_sayisi > 15000);
+                
+-- Honda sirketinin calisanlar sayisini 16000 olarak guncelleyiniz
+UPDATE sirketler                
+SET calisanlar_sayisi = 16000                
+WHERE sirket='Honda';  
+
+-- Ford sirketinin calisanlar sayisini 13000 olarak guncelleyiniz
+
+UPDATE sirketler
+SET calisanlar_sayisi =13000
+WHERE sirket='Ford';          
+
+-- Sirket id'si 101 den buyuk olan sirketteki calisanlarin 
+-- maas, sehir ve sirket bilgilerini goruntuleyin.
+
+SELECT isim, maas, sehir, sirket
+FROM calisanlar
+WHERE sirket IN( SELECT sirket
+				 FROM sirketler
+                 WHERE sirket_id > 101);
+
+-- - Sirketler tablosuna 104 id ile Volkswagen'i bir sirket olarak ekleyin
+
+insert into sirketler VALUES(104, 'Volkswagen', 20000);
+-- Calisanlar tablosuna volkswagen'da calisan bir personel ekleyiniz.
+
+
+insert into calisanlar  VALUES(456755512, 'Ali Can', 'Izmir', 1007, 'volkswagen');
+
+-- Ankarada calisani olan sirketlerin adi, sirket id ve calisan sayilarini
+-- listeleyiniz
+
+SELECT * 
+FROM sirketler
+WHERE sirket IN (SELECT sirket
+				 FROM calisanlar
+                 WHERE sehir= 'Ankara');
+
+-- Veli Yilmaz isimli personelin calistigi sirketlerin sirket 
+--  ismini ve personel sayilarini listeleyiniz.
+
+SELECT sirket, calisanlar_sayisi
+FROM sirketler
+WHERE sirket IN (SELECT sirket FROM calisanlar WHERE isim='Veli Yilmaz');
+
