@@ -96,3 +96,37 @@ FROM insanciklar
 WHERE soyisim LIKE '%bulut%'
 ORDER BY (2);
 
+-- Insanciklar tablosundaki tum kayitlari SSN numarasina gore siralayin.
+
+SELECT * 
+FROM insanciklar
+ORDER BY(ssn);
+
+-- Insanciklar tablosundaki tum kayitlari 
+-- SSN numarasi buyukten kucuge olarak siralayin.
+
+SELECT * 
+FROM insanciklar
+ORDER BY(ssn) DESC;
+
+-- Insanciklar tablosundaki tum kayitlari Soyisimler ters sirali, 
+-- isimler Natural sirali olarak listeleyin.
+
+SELECT * 
+FROM insanciklar
+ORDER BY soyisim DESC, isim ASC;
+
+-- Insanciklar tablosundaki tum kayitlari adresler ters sirali,
+-- isimler ters sirali olarak listeleyin.
+
+SELECT *
+FROM insanciklar
+ORDER BY adres DESC, isim DESC;
+
+
+-- Insanciklar tablosundaki tum kayitlari adresler ters sirali,
+-- isimler ters sirali, soyisimler ters sirali olarak listeleyin.
+
+SELECT *
+FROM insanciklar
+ORDER BY adres DESC,isim DESC, soyisim DESC;
