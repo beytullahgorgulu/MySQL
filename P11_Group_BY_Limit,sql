@@ -18,3 +18,103 @@ SELECT * FROM employees;
 Select employee_id AS id, employee_name AS isim ,employee_birth_city AS city
 from employees;
 
+ --  ======================== GROUP BY CLAUSE ===========================
+
+CREATE TABLE manav (
+    isim VARCHAR(50),
+    urun_adi VARCHAR(50),
+    urun_miktar INT
+);
+
+INSERT INTO manav VALUES( 'Ali', 'Elma', 5);
+INSERT INTO manav VALUES( 'Ayse', 'Armut', 3);
+INSERT INTO manav VALUES( 'Veli', 'Elma', 2);
+INSERT INTO manav VALUES( 'Hasan', 'Uzum', 4);
+INSERT INTO manav VALUES( 'Ali', 'Armut', 2);
+INSERT INTO manav VALUES( 'Ayse', 'Elma', 3);
+INSERT INTO manav VALUES( 'Veli', 'Uzum', 5);
+INSERT INTO manav VALUES( 'Ali', 'Armut', 2);
+INSERT INTO manav VALUES( 'Veli', 'Elma', 3);
+INSERT INTO manav VALUES( 'Ayse', 'Uzum', 2);
+INSERT INTO manav VALUES( 'Ali', null, 2);
+INSERT INTO manav VALUES( 'Ayse', 'Armut', 1);
+INSERT INTO manav VALUES( 'Ayse', 'Elma', 4);
+INSERT INTO manav VALUES( 'Ayse', null, 3);
+SELECT * FROM manav;
+
+-- Urun adina gore alinan urunlerin toplam kilosunu listeleyin.
+
+SELECT urun_adi, SUM(urun_miktar)toplam_kg
+FROM manav
+GROUP BY urun_adi;
+
+
+-- Isme gore, alinan urunlerin toplam kilosunu bulup,
+-- isim sirasina gore siralayin.
+
+SELECT isim, SUM(urun_miktar)toplam_kg
+FROM manav
+GROUP BY isim
+ORDER BY isim;
+
+-- Isme gore, alinan urunlerin toplam kilosunu bulup,
+-- isim sirasina gore ters siralayin. 
+
+SELECT isim, SUM(urun_miktar)toplam_kg
+FROM manav
+GROUP BY isim
+ORDER BY isim DESC;
+
+-- Bunlari bir de toplam kiloya gore ters sirali yapalim
+
+SELECT isim, SUM(urun_miktar)toplam_kg
+FROM manav
+GROUP BY isim
+ORDER BY toplam_kg DESC;
+
+
+-- Urun ismine gore urun satin alan 
+-- toplam kisi sayisini kisi sayisina gore siralayiniz.
+
+SELECT urun_adi, COUNT(isim)kisi_sayisi
+FROM manav
+GROUP BY urun_adi
+ORDER BY kisi_sayisi;
+
+-- Alinan kilo miktarina gore musteri sayisini, urun_miktar 
+-- sirasina gore listeleyiniz.
+
+SELECT urun_miktar, COUNT(isim) kisi_sayisi
+FROM manav
+GROUP BY urun_miktar
+ORDER BY urun_miktar;
+
+
+-- Satilan meyve turune (urun_adi) gore urun alan kisi sayisini,
+-- urun_adi NATURAL ORDER'a gore gosteren QUERY yaziniz. ASC
+
+SELECT urun_adi, COUNT(isim)kisi_sayisi
+FROM manav
+GROUP BY urun_adi
+ORDER BY urun_adi;
+
+-- Satilan meyve turune (urun_adi) gore urun alan kisi sayisini,
+-- urun_adi NATURAL ORDER'a gore gosteren QUERY yaziniz.
+-- NULL olarak girilen meyveyi listelemesin.
+
+SELECT urun_adi, COUNT(isim)kisi_sayisi
+FROM manav
+WHERE urun_adi IS NOT NULL
+GROUP BY urun_adi
+ORDER BY urun_adi;
+
+-- Satilan meyvenin 4 harfli olmasina (urun_adi) gore 
+-- urun alan kisi sayisini, 
+-- urun_adi NATURAL ORDER'a gore gosteren QUERY yaziniz.
+
+SELECT urun_adi, COUNT(isim) kisi_sayisi
+FROM manav
+WHERE urun_adi LIKE '____'
+GROUP BY urun_adi
+ORDER BY urun_adi;
+
