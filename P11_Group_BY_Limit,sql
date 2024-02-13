@@ -1,0 +1,20 @@
+USE sys;
+
+-- ======================== ALIASES ===========================
+
+CREATE TABLE employees
+(
+employee_id char(9),
+employee_name varchar(50),
+employee_birth_city varchar(50)
+);
+
+INSERT INTO employees VALUES(123456789, 'Ali Can', 'Istanbul');
+INSERT INTO employees VALUES(234567890, 'Veli Cem', 'Ankara');
+INSERT INTO employees VALUES(345678901, 'Mine Bulut', 'Izmir');
+
+SELECT * FROM employees;
+
+Select employee_id AS id, employee_name AS isim ,employee_birth_city AS city
+from employees;
+
