@@ -1,0 +1,26 @@
+USE sys;
+
+-- ============================ LIMIT ===========================
+-- Isciler tablosundan ilk 5 kaydi getiriniz.
+
+SELECT * 
+FROM isciler
+LIMIT 5;
+
+-- Isim sirali tablodan ilk 3 kaydi listeleyin.
+
+SELECT isim 
+FROM isciler
+ORDER BY isim
+LIMIT 3;
+
+-- Maas sirali tablodan 4. kayittan 7. kayda kadar olan
+-- (7. dahil degil) kayitlarin isim ve sehir bilgilerini listeleyin.
+
+SELECT isim, sehir
+FROM isciler
+ORDER BY maas
+LIMIT 3,3;
+
+
+
