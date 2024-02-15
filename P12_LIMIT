@@ -24,3 +24,49 @@ LIMIT 3,3;
 
 
 
+--								LIMIT VE OFFSET 
+
+-- Maas sirali tablodan 4. kayittan 7. kayda kadar olan
+-- (7. dahil degil) kayitlarin isim ve sehir bilgilerini listeleyin.
+
+
+SELECT isim, sehir
+FROM isciler
+ORDER BY maas
+LIMIT 3 OFFSET 3;
+
+
+SELECT isim, sehir
+FROM isciler
+ORDER BY maas
+LIMIT 1111111111111 OFFSET 5;
+
+-- Maasi en yuksek 3 kisinin bilgilerini listeleyen sorguyu yaziniz.
+
+SELECT * 
+FROM isciler 
+ORDER BY maas DESC
+LIMIT 3;
+
+-- Maasi en yuksek kisiler listesinden 3. sirada olan ismi
+-- listeleyen sorguyu yaziniz.
+
+SELECT isim
+FROM isciler
+ORDER BY maas DESC
+LIMIT 2,1; -- ilk 2 satırı atla, 1 satır getir
+
+SELECT isim
+FROM isciler
+ORDER BY maas DESC
+LIMIT 1 OFFSET 2; -- 1 satır getir, ilk 2 satırı atla
+
+-- Maas'i 4000'den yuksek olan ılk 3 kisinin sehrini ve ismini listeleyin.
+
+SELECT sehir, isim
+FROM isciler
+WHERE maas>4000
+ORDER BY maas DESC
+LIMIT 3;
+
+
