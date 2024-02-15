@@ -70,3 +70,27 @@ ORDER BY maas DESC
 LIMIT 3;
 
 
+/*=========================DISTINCT===========================
+------- SYNTAX----------
+SELECT DISTINCT field1, field2 ......
+FROM table_name  
+============================================================*/
+
+-- Iscileri yasadiklari sehirler ile tekrarsiz listeleyiniz
+
+SELECT DISTINCT isim, sehir
+FROM isciler; 
+
+-- manav tablosunda satilan farkli meyve turlerini 
+-- listeleyen bir query yaziniz
+
+SELECT * FROM manav;
+
+SELECT urun_adi 
+FROM manav
+GROUP BY urun_adi;   -- Gruplama syntax yapisidir.
+
+SELECT DISTINCT urun_adi  -- dogru syntax yapisi budur.
+FROM manav;
+
+
