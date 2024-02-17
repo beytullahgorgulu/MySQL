@@ -238,8 +238,31 @@ SELECT sirket.sirket_isim, siparisler.siparis_id, siparisler.siparis_tarihi
 FROM sirket
 LEFT JOIN siparisler
 ON sirket.sirket_id = siparisler.sirket_id;
- 
- -- FROM komutundan sonra LEFT JOIN'de ilk tablodaki tum satirlar gosterilir.
- -- ILK tablodan sonra ON kosulunda ne yaziyorsa onun sonuclari gosterilir.
- -- Kosula uymayan satirlar NULL olarak gosterilir.
 
+/*=============================== RIGHT JOIN  ==================================
+        
+    Syntax
+    -----------
+    SELECT sutun1,sutun2....sutunN
+    FROM tablo1 
+    RIGHT JOIN tablo2
+    ON tablo1.sutun = tablo2.sutun;
+    
+==============================================================================*/
+
+-- siparisler tablosundaki tum sirketleri ve bu sirketlere ait olan 
+-- siparis_id ve siparis_tarihleri listeleyen bir sorgu yaziniz.
+
+SELECT sirket.sirket_isim, siparisler.siparis_id, siparisler.siparis_tarihi
+FROM sirket RIGHT JOIN siparisler
+ON sirket.sirket_id = siparisler.sirket_id;
+
+
+ -- siparisler tablosundaki tum siparis_id ve siparis_tarihleri ile 
+ -- bunlara karsilik gelen sirket_isimlerini listeleyen bir sorgu yaziniz.
+ 
+ SELECT sirket.sirket_isim, siparisler.siparis_id, siparisler.siparis_tarihi
+ FROM sirket RIGHT JOIN siparisler
+ ON sirket.sirket_id = siparisler.sirket_id;
+ 
+ 
