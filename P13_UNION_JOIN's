@@ -266,3 +266,127 @@ ON sirket.sirket_id = siparisler.sirket_id;
  ON sirket.sirket_id = siparisler.sirket_id;
  
  
+ /*=============================== FULL JOIN  ==================================
+        
+    Syntax
+    -----------
+    SELECT sutun1,sutun2....sutunN
+    FROM tablo1 
+    LEFT JOIN tablo2
+    ON tablo1.sutun = tablo2.sutun;
+    UNION
+    SELECT sutun1,sutun2....sutunN
+    FROM tablo1 
+    RIGHT JOIN tablo2
+    ON tablo1.sutun = tablo2.sutun;    
+    
+==============================================================================*/  
+ 
+  -- sirket ve siparisler adindaki tablolarda yer alan sirket_id, 
+  -- sirket_isim, siparis_id ve siparis_tarihleri'ni listeleyen bir query yaziniz
+  
+  SELECT sirket.sirket_id, sirket.sirket_isim, siparisler.siparis_id, siparisler.siparis_tarihi
+  FROM sirket LEFT JOIN siparisler
+  ON sirket.sirket_id = siparisler.sirket_id
+ UNION
+ SELECT sirket.sirket_id, sirket.sirket_isim, siparisler.siparis_id, siparisler.siparis_tarihi
+ FROM sirket RIGHT JOIN siparisler
+ ON sirket.sirket_id = siparisler.sirket_id; 
+ 
+ -- FULL JOIN de (LJ+ UNION + RJ) uygulanmali.
+ 
+ 
+--  ==============================================================================
+    CREATE TABLE bolumler (
+      bolum_id   int PRIMARY KEY,
+      bolum_isim VARCHAR(14),
+      konum      VARCHAR(13)
+    );
+    
+    INSERT INTO bolumler VALUES (10,'MUHASEBE','IST');
+    INSERT INTO bolumler VALUES (20,'MUDURLUK','ANKARA');
+    INSERT INTO bolumler VALUES (30,'SATIS','IZMIR');
+    INSERT INTO bolumler VALUES (40,'ISLETME','BURSA');
+    INSERT INTO bolumler VALUES (50,'DEPO', 'YOZGAT');
+    
+
+    CREATE TABLE personeller (
+      personel_id   int PRIMARY KEY,
+      personel_isim VARCHAR(10),
+      meslek        VARCHAR(9),
+      mudur_id      int,
+      maas          int,
+      bolum_id      int
+    );
+  
+   
+  
+    INSERT INTO personeller VALUES (7369,'AHMET','KATIP',1111,800,20);
+    INSERT INTO personeller VALUES (7499,'BAHATTIN','SATISE',1222,1600,30);
+    INSERT INTO personeller VALUES (7521,'NESE','SATISE',1222,1250,30);
+    INSERT INTO personeller VALUES (1111,'MUZAFFER','MUDUR',7839,2975,20);
+    INSERT INTO personeller VALUES (7654,'MUHAMMET','SATISE',1222,1250,30);
+    INSERT INTO personeller VALUES (1222,'EMINE','MUDUR',7839,2850,30);
+    INSERT INTO personeller VALUES (1333,'HARUN','MUDUR',7839, 2450,10);
+    INSERT INTO personeller VALUES (7788,'MESUT','ANALIST',1111,3000,20);
+    INSERT INTO personeller VALUES (7839,'SEHER','BASKAN',NULL,5000,10);
+    INSERT INTO personeller VALUES (7844,'DUYGU','SATISE',1222,1500,30);
+    INSERT INTO personeller VALUES (7876,'ALI','KATIP',1111,1100,20);
+    INSERT INTO personeller VALUES (7900,'MERVE','KATIP',1222,950,30);
+    INSERT INTO personeller VALUES (7902,'NAZLI','ANALIST',1111,3000,20);
+    INSERT INTO personeller VALUES (7934,'EBRU','KATIP',1333,1300,10);
+    INSERT INTO personeller VALUES (7956,'SIBEL','MIMAR',1333,3300,60);
+    INSERT INTO personeller VALUES (7933,'ZEKI','MUHENDIS',1333,4300,60);
+     
+   SELECT * FROM bolumler;
+   SELECT * FROM personeller;
+   
+  -- SATIS ve MUHASEBE bolumlerinde calisanlarin isimlerini ve 
+  -- bolumlerini, once bolum sonra isim sirali olarak listeleyiniz 
+  
+  SELECT personeller.personel_isim, bolumler.bolum_isim
+  FROM personeller JOIN bolumler
+  ON personeller.bolum_id = bolumler.bolum_id
+  WHERE bolum_isim IN('Satis', 'Muhasebe')
+  ORDER BY bolum_isim, personel_isim;
+  
+  
+  /*
+  SATIS ISLETME ve DEPO bolumlerinde calisanlarin isimlerini ve
+  bolumlerini isim sirali olarak listeleyiniz
+  NOT: Calisani olmasa bile bolum ismi listelenmelidir.
+  */
+  
+SELECT bolumler.bolum_isim, personeller.personel_isim
+FROM bolumler LEFT JOIN personeller
+ON bolumler.bolum_id = personeller.bolum_id
+WHERE bolumler.bolum_isim IN('SATIS','ISLETME','DEPO')
+ORDER BY personeller.personel_isim;
+  
+  
+  
+  /*
+  Calisan tum personelin isimlerini bolum isimlerini ve maaslarini
+  bolum ters sirali ve maas sirali listalayiniz
+  NOT: Bolum ismi olmasa bile calisanin ismi listelenmelidir.
+  */
+  
+SELECT personeller.personel_isim, bolumler.bolum_isim, personeller.maas
+FROM personeller LEFT JOIN bolumler
+ON bolumler.bolum_id = personeller.bolum_id
+ORDER BY bolumler.bolum_isim DESC, personeller.maas;
+  
+  
+  
+  /*
+  SATIS ve MUDURLUK bolumlerinde calsian personelin maaslari 2000 den
+  buyuk olanlarin isimlerini, bolum isimlerini ve maaslarini bolume ve isme gore
+  siralayarak listeleyiniz.
+  */
+  
+SELECT personeller.personel_isim, bolumler.bolum_isim, personeller.maas
+FROM personeller LEFT JOIN bolumler
+ON personeller.bolum_id=bolumler.bolum_id
+WHERE personeller.maas>2000
+ORDER BY bolumler.bolum_isim, personeller.personel_isim;
+
