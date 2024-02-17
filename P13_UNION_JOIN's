@@ -146,3 +146,64 @@ ORDER BY (DESC)
 LIMIT
 */
 
+-- ============================== JOIN ISLEMLERI ===============================
+
+CREATE TABLE sirket 
+(
+    sirket_id INT , 
+    sirket_isim VARCHAR(20)
+);
+
+    INSERT INTO sirket VALUES(100, 'Toyota');
+    INSERT INTO sirket VALUES(101, 'Honda');
+    INSERT INTO sirket VALUES(102, 'Ford');
+    INSERT INTO sirket VALUES(103, 'Hyundai');
+    
+CREATE TABLE siparisler    
+(
+    siparis_id INT,
+    sirket_id INT, 
+    siparis_tarihi DATE
+    
+);
+
+    INSERT INTO siparisler VALUES(11, 101, '2020-04-17');
+    INSERT INTO siparisler VALUES(22, 102, '2020-04-18');
+    INSERT INTO siparisler VALUES(33, 103, '2020-04-19');
+    INSERT INTO siparisler VALUES(44, 104, '2020-04-20');
+    INSERT INTO siparisler VALUES(55, 105, '2020-04-21');
+
+SELECT * FROM sirket;
+SELECT * FROM siparisler;
+
+
+/*=============================== INNER JOIN  ==================================
+    
+    Syntax
+    -----------
+    SELECT sutun1,sutun2....sutunN
+    FROM tablo1 
+    INNER JOIN tablo2
+    ON tablo1.sutun = tablo2.sutun;
+    
+================================================================================*/
+
+-- Iki Tabloda sirket_id'si ayni olanlarin sirket_ismi, siparis_id ve 
+-- siparis_tarihleri listeleyen bir sorgu yaziniz.
+
+SELECT sirket.sirket_isim, siparisler.siparis_id, siparisler.siparis_tarihi
+FROM sirket
+INNER JOIN siparisler
+ON siparisler.sirket_id=sirket.sirket_id;
+
+
+
+
+SELECT sirket.sirket_isim, siparisler.siparis_id, siparisler.siparis_tarihi
+FROM sirket INNER JOIN siparisler
+ON sirket.sirket_id = siparisler.sirket_id;
+ 
+ -- INNER JOIN kullanilirken sadece iki tabloda ortak olan degerleri alir.
+ -- Bu sorgu icin sirket tablosundan (sirket_id= 101, 102, 103) siparisler tablosunda da 
+ -- oldugu icin o degerlerin sonucunu getirdi.
+ 
