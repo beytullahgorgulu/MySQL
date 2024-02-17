@@ -207,3 +207,39 @@ ON sirket.sirket_id = siparisler.sirket_id;
  -- Bu sorgu icin sirket tablosundan (sirket_id= 101, 102, 103) siparisler tablosunda da 
  -- oldugu icin o degerlerin sonucunu getirdi.
  
+ /*=============================== LEFT JOIN  ==================================
+    
+    LEFT JOIN, 1. tablodan (sol tablo) SELECT ile ifade edilen sutunlara ait tum
+    satirlari getirir. 
+    Ancak, diger tablodan sadece ON ile belirtilen kosula uyan satirlari getirir. 
+    
+    1) Left Join'de ilk tablodaki tum record'lar gosterilir.
+    2) Ilk tablodaki datalara 2.tablodan gelen ek datalar 
+       varsa bu ek datalar ortak datalar icin gosterilir, 
+       ancak ortak olmayan datalar icin o kisimlar bos kalir.
+    3) Ilk yazdiginiz Tablonun tamamini aldigi icin hangi tabloyu
+       istedigimize karar verip once onu yazmaliyiz. 
+        
+    Syntax
+    -----------
+    SELECT sutun1,sutun2....sutunN
+    FROM tablo1 
+    LEFT JOIN tablo2
+    ON tablo1.sutun = tablo2.sutun;
+    
+==============================================================================*/  
+ 
+ /* -----------------------------------------------------------------------------
+  ORNEK2: sirket tablosundaki tum sirketleri ve bu sirketlere ait olan 
+  siparis_id ve siparis_tarihleri listeleyen bir sorgu yaziniz.
+------------------------------------------------------------------------------*/
+
+SELECT sirket.sirket_isim, siparisler.siparis_id, siparisler.siparis_tarihi
+FROM sirket
+LEFT JOIN siparisler
+ON sirket.sirket_id = siparisler.sirket_id;
+ 
+ -- FROM komutundan sonra LEFT JOIN'de ilk tablodaki tum satirlar gosterilir.
+ -- ILK tablodan sonra ON kosulunda ne yaziyorsa onun sonuclari gosterilir.
+ -- Kosula uymayan satirlar NULL olarak gosterilir.
+
